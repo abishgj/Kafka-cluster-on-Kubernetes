@@ -14,7 +14,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: broker
-        image: solsson/kafka-persistent:0.10.1
+        image: rztdl/kafka-persistent:1.0
         ports:
         - containerPort: 9092
         command:
