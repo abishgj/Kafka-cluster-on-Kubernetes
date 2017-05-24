@@ -5,6 +5,20 @@
 
 ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+#Check if the required images are present in local else pull from remote
+echo "Checking for required docker images"
+if [ ! -z $(docker images -q rztdl/zookeeper-statefulset:1.0) ]; then
+  echo "Pulling zookeeper docker image from rempte"
+  echo ""
+  sudo docker pull rztdl/zookeeper-statefulset:1.0
+fi
+
+if [ ! -z $(docker images -q rztdl/kafka-persistent:1.0) ]; then
+  echo "Pulling kafka docker image from remote"
+  echo ""
+  sudo docker pull rztdl/zookeeper-statefulset:1.0
+fi
+
 #Create a namespace for the deployment of kafka stateful set
 kubectl create -f $ROOT_DIR/namespace.yml
 
