@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
-
-# Installs zookeeper:3.4.10
+MAINTAINER Elisey Zanko <elisey.zanko@gmail.com>
+# Installs zookeeper 3.4.10
 # Install required packages
 RUN apk add --no-cache \
     bash \
