@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Elisey Zanko <elisey.zanko@gmail.com>
-# Installs zookeeper 3.4.10
+
+# Installs zookeeper:3.4.10
 # Install required packages
 RUN apk add --no-cache \
     bash \
@@ -47,5 +47,6 @@ ENV PATH=$PATH:/$DISTRO_NAME/bin \
     ZOOCFGDIR=$ZOO_CONF_DIR
 
 COPY docker-entrypoint.sh /
+RUN chmod 765 /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["zkServer.sh", "start-foreground"]
