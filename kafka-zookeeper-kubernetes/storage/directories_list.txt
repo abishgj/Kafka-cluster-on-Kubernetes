@@ -1,0 +1,5 @@
+/tmp/test/datadir-kafka-0
+/tmp/test/datadir-kafka-1
+/tmp/test/datadir-kafka-2
+/tmp/test/datadir-zookeeper-0
+/tmp/test/datadir-zookeeper-1

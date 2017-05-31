@@ -1,0 +1,34 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: clusterkafka
+spec:
+  serviceName: "broker"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: broker
+        image: rztdl/kafka-persistent:0.1
+        ports:
+        - containerPort: 9092
+        command:
+        - sh
+        - -c
+        - "./bin/kafka-server-start.sh config/server.properties --override broker.id=$(hostname | awk -F'-' '{print $2}')"
+        volumeMounts:
+        - name: data
+          mountPath: /opt/kafka/data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 500Mi

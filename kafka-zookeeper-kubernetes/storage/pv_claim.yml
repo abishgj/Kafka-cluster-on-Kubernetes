@@ -1,0 +1,80 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-kafka-0
+  namespace: clusterkafka
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  selector:
+    matchLabels:
+      app: kafka
+      podindex: "0"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-kafka-1
+  namespace: clusterkafka
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  selector:
+    matchLabels:
+      app: kafka
+      podindex: "1"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-kafka-2
+  namespace: clusterkafka
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  selector:
+    matchLabels:
+      app: kafka
+      podindex: "2"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-zoo-0
+  namespace: clusterkafka
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: zookeeper
+      podindex: "0"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-zoo-1
+  namespace: clusterkafka
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      app: zookeeper
+      podindex: "1"

@@ -1,0 +1,43 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: zoo
+  namespace: clusterkafka
+spec:
+  serviceName: "zoo"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: zookeeper
+          image: rztdl/zookeeper-statefulset:0.1
+          env:
+            - name: ZOO_SERVERS
+              value: server.1=zoo-0.zoo:2888:3888:participant
+          ports:
+            - containerPort: 2181
+              name: client
+            - containerPort: 2888
+              name: peer
+            - containerPort: 3888
+              name: leader-election
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            # There's defaults in this folder, such as logging config
+            #- name: conf
+            #  mountPath: /conf
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+      annotations:
+        volume.alpha.kubernetes.io/storage-class: anything
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
