@@ -15,7 +15,7 @@ Follow the steps mentioned below to deploy:
 2. Run the deploy script as `bash deploy_infrastructure.sh`.
 3. You can verify your deployment using Kubernetes dashboard or using the test client in test/testclient.yml.
 
-# Purge deployment steps:
+# Purge steps:
 
 1. Run the purge script as `bash purge_infrastructure.sh`.
 2. Run the script `bash /storage/delete_directories.sh` to hard delete the data.
